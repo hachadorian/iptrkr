@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import marker from "../assets/icon-location.svg";
 
 const Map = ({ data }) => {
+  const [map, setMap] = useState(null);
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
   });
+
+  useEffect(() => {
+    if (map) {
+      map.flyTo([data.location.lat, data.location.lng]);
+    }
+  }, [data, map]);
 
   return (
     <MapContainer
@@ -15,6 +22,7 @@ const Map = ({ data }) => {
       zoom={13}
       style={{ height: "100%" }}
       zoomControl={false}
+      whenCreated={(map) => setMap({ map })}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
