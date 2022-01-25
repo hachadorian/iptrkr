@@ -17,11 +17,11 @@ const App = () => {
     };
 
     fetchUserIP();
-  }, [data]);
+  }, []);
 
   return (
     <div className="h-screen flex flex-col">
-      <header className="h-2/5 bg-yellow-400 flex items-center flex-col">
+      <header className="h-3/5 lg:h-2/5 flex items-center flex-col">
         <Search setData={setData} />
       </header>
       <div className="h-full">

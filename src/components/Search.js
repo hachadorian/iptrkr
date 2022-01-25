@@ -12,7 +12,10 @@ const Search = ({ setData }) => {
   };
 
   return (
-    <form className="w-1/2 flex flex-col font-Rubik" onSubmit={handleSubmit}>
+    <form
+      className="lg:w-1/2 lg:mt-0 mt-10 flex flex-col font-Rubik"
+      onSubmit={handleSubmit}
+    >
       <div className="text-white font-bold text-3xl py-8 text-center">
         IP Address Tracker
       </div>
