@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import marker from "../assets/icon-location.svg";
@@ -11,7 +11,7 @@ const Map = ({ data }) => {
   });
 
   useEffect(() => {
-    if (map) {
+    if (map && data) {
       map.flyTo([data.location.lat, data.location.lng]);
     }
   }, [data, map]);
@@ -22,7 +22,7 @@ const Map = ({ data }) => {
       zoom={13}
       style={{ height: "100%" }}
       zoomControl={false}
-      whenCreated={(map) => setMap({ map })}
+      whenCreated={(map) => setMap(map)}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
