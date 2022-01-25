@@ -12,6 +12,7 @@ const App = () => {
     const fetchUserIP = async () => {
       const res = await publicIp.v4();
       const data = await fetchData(res);
+      setTimeout(() => {}, 5000);
       setData(data);
     };
 
