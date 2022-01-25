@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Display from "./components/Display";
+import Search from "./components/Search";
+import Map from "./components/Map";
+import publicIp from "public-ip";
+import { fetchData } from "./util/fetch";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserIP = async () => {
+      const res = await publicIp.v4();
+      const data = await fetchData(res);
+      setData(data);
+    };
+
+    fetchUserIP();
+  }, [data]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="h-screen flex flex-col">
+      <header className="h-2/5 bg-yellow-400 flex items-center flex-col">
+        <Search setData={setData} />
       </header>
+      <div className="h-full">
+        <div className="w-full flex justify-center absolute -mt-20 z-1000">
+          <Display data={data} />
+        </div>
+        <Map data={data} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
