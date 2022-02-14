@@ -25,7 +25,7 @@ const App = () => {
         <Search setData={setData} />
       </header>
       <div className="h-full">
-        <div className="w-full flex justify-center absolute -mt-20 z-1000">
+        <div className="w-full flex justify-center absolute -mt-10 z-1000">
           <Display data={data} />
         </div>
         <Map data={data} />
